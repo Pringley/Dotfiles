@@ -1,0 +1,12 @@
+# Tab completion of symlinked directories.
+set mark-directories On
+set mark-symlinked-directories On
+
+set editing-mode vi
+
+# Enter command mode with jk
+$if mode=vi
+    set keymap vi-insert
+    "jk": vi-movement-mode
+    "kj": vi-movement-mode
+$endif
