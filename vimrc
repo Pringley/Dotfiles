@@ -50,6 +50,10 @@ noremap <leader>fd :w\|!fab deploy<cr>
 noremap <leader>ft :w\|!fab test<cr>
 
 noremap <leader>e :w\|call CallScript()<cr>
+noremap <leader>h :call WinMove('h')<cr>
+noremap <leader>k :call WinMove('k')<cr>
+noremap <leader>l :call WinMove('l')<cr>
+noremap <leader>j :call WinMove('j')<cr>
 
 """""""""""
 " PLUGINS "
@@ -78,6 +82,23 @@ filetype plugin indent on
 """""""""""""""""""""
 " DEFINED FUNCTIONS "
 """""""""""""""""""""
+
+function! WinMove(key)
+    let t:curwin = winnr()
+
+    " try to move
+    exec "wincmd ".a:key
+
+    " if that doesn't work, we're at the edge
+    if(t:curwin == winnr())
+        if(match(a:key,'[jk]'))
+            wincmd v
+        else
+            wincmd s
+        endif
+        exec "wincmd ".a:key
+    endif
+endfunction
 
 function! CallScript()
     execute("w")
