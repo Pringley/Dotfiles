@@ -11,9 +11,11 @@ set expandtab smarttab ts=4 sw=4        " tab settings (4 spaces)
 set incsearch ignorecase smartcase      " search settings (smart)
 set wildmenu wildmode=longest:full      " tab completion (unix-y)
 set backspace=indent,eol,start          " backspace settings (easy)
+set dir=~/.vimtmp//,/tmp//,.            " set swap file location
 
 if has("persistent_undo")
     set undofile                        " save undo history
+    set undodir=~/.vimtmp//,/tmp//,.    " set undo file location
 endif
 
 syntax on                               " Use syntax highlighting.
