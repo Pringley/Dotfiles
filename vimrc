@@ -120,8 +120,10 @@ function! CallScript()
         execute("!javac -d /tmp % && java -classpath /tmp %:t:r")
     elseif(l:filetype == "scala")
         execute("!scalac -d /tmp % && scala -classpath /tmp %:t:r")
+    elseif(l:filetype == "md" || l:filetype == "txt")
+        execute("!pandoc -f Markdown -o /tmp/p.out.html -sS % && xdg-open /tmp/p.out.html")
     else
-        echom "Unsupported type".l:filetype
+        execute("!./%")
     endif
  
 endfunction
