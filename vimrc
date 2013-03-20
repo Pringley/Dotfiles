@@ -78,6 +78,9 @@ if filereadable(vundle_readme)
     Bundle 'msanders/snipmate.vim'
 endif
 
+" Settings
+let g:ctrlp_clear_cache_on_exit = 0             " save ctrl+p cache
+
 " Detect plugins/autoindent based on filetype.
 filetype plugin indent on
 
