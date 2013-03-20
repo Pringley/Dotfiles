@@ -52,6 +52,8 @@ noremap <leader>fd :w\|!fab deploy<cr>
 noremap <leader>ft :w\|!fab test<cr>
 
 noremap <leader>e :w\|call CallScript()<cr>
+noremap <leader>p :w\|call ToggleProse()<cr>
+
 noremap <leader>h :call WinMove('h')<cr>
 noremap <leader>k :call WinMove('k')<cr>
 noremap <leader>l :call WinMove('l')<cr>
@@ -129,4 +131,21 @@ function! CallScript()
         execute("!./%")
     endif
  
+endfunction
+
+function! ToggleProse()
+    if(!exists("b:prosemode"))
+        let b:prosemode = 0
+    endif
+
+    if(b:prosemode == 0)
+        let b:noprose_fo = &fo
+        let b:prosemode = 1
+        set fo+=a
+        echom "Prose mode activated"
+    else
+        let b:prosemode = 0
+        let &fo=b:noprose_fo
+        echom "Prose mode deactivated"
+    endif
 endfunction
