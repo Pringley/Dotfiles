@@ -52,7 +52,7 @@ noremap <leader>fd :w\|!fab deploy<cr>
 noremap <leader>ft :w\|!fab test<cr>
 
 noremap <leader>e :w\|call CallScript()<cr>
-noremap <leader>p :w\|call ToggleProse()<cr>
+noremap <leader>p :call ToggleProse()<cr>
 
 noremap <leader>h :call WinMove('h')<cr>
 noremap <leader>k :call WinMove('k')<cr>
