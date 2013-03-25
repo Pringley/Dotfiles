@@ -75,9 +75,17 @@ if filereadable(vundle_readme)
     set rtp+=~/.vim/bundle/vundle/
     call vundle#rc()
 
+    " Bundle management
     Bundle 'gmarik/vundle'
+
+    " Fuzzy file finder
     Bundle 'kien/ctrlp.vim'
+
+    " Textmate-like snippets
     Bundle 'msanders/snipmate.vim'
+
+    " Git plugin
+    Bundle 'tpope/vim-fugitive'
 endif
 
 " Settings
