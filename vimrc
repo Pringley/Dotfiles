@@ -43,6 +43,7 @@ nnoremap ` '
 noremap <leader>w :w<cr>
 noremap <leader>q :wq<cr>
 
+noremap <leader>d :w\|Dispatch<cr>
 noremap <leader>m :w\|make<cr>
 noremap <leader>t :w\|make test<cr>
 noremap <leader>c :w\|make clean<cr>
@@ -86,6 +87,9 @@ if filereadable(vundle_readme)
 
     " Git plugin
     Bundle 'tpope/vim-fugitive'
+
+    " Asynchronous tasks
+    Bundle 'tpope/vim-dispatch'
 endif
 
 " Settings
