@@ -10,7 +10,7 @@ set hidden                              " don't close hidden buffers
 set expandtab smarttab ts=4 sw=4        " tab settings (4 spaces)
 set incsearch ignorecase smartcase      " search settings (smart)
 set wildmenu wildmode=longest:full      " tab completion (unix-y)
-set backspace=indent,eol,start          " backspace settings (easy)
+" set backspace=indent,eol,start          " backspace settings (easy)
 set dir=~/.vimswp//,/tmp//,.            " set swap file location
 
 if has("persistent_undo")
@@ -90,6 +90,14 @@ if filereadable(vundle_readme)
 
     " Asynchronous tasks
     Bundle 'tpope/vim-dispatch'
+
+    Bundle 'ledger/vim-ledger'
+
+    " Code completion
+    " Bundle 'Valloric/YouCompleteMe'
+    " Bundle 'davidhalter/jedi-vim'
+
+    Bundle 'Floobits/floobits-vim'
 endif
 
 " Settings
@@ -97,6 +105,8 @@ let g:ctrlp_clear_cache_on_exit = 0             " save ctrl+p cache
 
 " Detect plugins/autoindent based on filetype.
 filetype plugin indent on
+
+" au BufNewFile,BufRead ledger.txt setf ledger | comp ledger
 
 """""""""""""""""""""
 " DEFINED FUNCTIONS "
@@ -124,7 +134,7 @@ function! CallScript()
  
     let l:filetype = expand("%:e")
     if(l:filetype == "py")
-        execute("!python %")
+        execute("!python3 %")
     elseif(l:filetype == "rb")
         execute("!ruby %")
     elseif(l:filetype == "sh")
@@ -142,7 +152,9 @@ function! CallScript()
     elseif(l:filetype == "scala")
         execute("!scalac -d /tmp % && scala -classpath /tmp %:t:r")
     elseif(l:filetype == "md" || l:filetype == "txt" || l:filetype == "markdown")
-        execute("!pandoc -f Markdown -o /tmp/p.out.html -sS % && xdg-open /tmp/p.out.html")
+        execute("!pandoc -H /Users/ben/ref/styleheader.html -t html5 -f Markdown -o /tmp/p.out.html -sSm % && open /tmp/p.out.html")
+    elseif(l:filetype == "hs")
+        execute("!runhaskell %")
     else
         execute("!./%")
     endif
